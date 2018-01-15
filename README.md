@@ -7,15 +7,15 @@ running the gateway, and a Mosquitto MQTT broker running on a third party
 machine. It depends on the RXTX library to listen to the serial port, and on the
 Paho client library to interact with MQTT.
 
+This piece of software is listening to a serial port and forwards everything it
+reads from it to an MQTT broker. In my tests, I put a potentiometer on the
+Arduino Uno that produced an integer value between 0 and 400. In case of failure
+from getting value from the serial port, this program switch to a simulator
+mode by sending random integer values (on the same range) to the MQTT broker.
+
 Usage: It takes 2 command arguments at execution. The first one is the IP of the
 MQTT broker, the second one is the MQTT channel to write to. There are default
 values if the command arguments are missing.
-
-This piece of software is listening to a serial port and forwards everything it
-reads from it to an MQTT broker. In my tests, I put a potentiometer on the
-Arduino Uno that produced an integer value between 0 and 400. In case on failure
-from getting value from the serial port, this program switch in a simulator
-mode by sending random integer values (in the same range) to the MQTT broker.
 
 DONATION:
 As I share these sources for commercial use too, maybe you could consider
