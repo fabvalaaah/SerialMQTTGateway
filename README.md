@@ -9,9 +9,9 @@ Paho client library to interact with MQTT.
 
 This piece of software is listening to a serial port and forwards everything it
 reads from it to an MQTT broker. In my tests, I put a potentiometer on the
-Arduino Uno that produced an integer value between 0 and 400. In case of failure
-from getting value from the serial port, this program switch to a simulator
-mode by sending random integer values (on the same range) to the MQTT broker.
+Arduino Uno that produced integer values between 0 and 400. In case of failure
+from getting values from the serial port, this program switch to a simulator
+mode by sending random integers (on the same range) to the MQTT broker.
 
 Usage: It takes 2 command arguments at execution. The first one is the IP of the
 MQTT broker, the second one is the MQTT channel to write to. There are default
