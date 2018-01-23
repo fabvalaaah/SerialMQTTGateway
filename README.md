@@ -18,7 +18,7 @@ Usage: It takes 2 command arguments at execution. The first one is the IP of the
 MQTT broker, the second one is the MQTT channel to write to. There are default
 values if the command arguments are missing.
 
-Tips :
+Tips:
 - Use "dmesg" on Linux to get the serial port ID.
 - If the port identifiers are empty, that's certainly due to a privilege issue.
 Just launch the gateway as root to solve the problem.
