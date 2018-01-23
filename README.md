@@ -2,20 +2,26 @@
 Serial to MQTT gateway in Java.
 
 This is a Java NetBeans project, compiled with the Open JDK 1.8.0_151 and tested
-with Ubuntu Linux 16.04.5 LTS x64, an Arduino Uno plugged on the computer
-running the gateway, and a Mosquitto MQTT broker running on a third party
-machine. It depends on the RXTX library to listen to the serial port, and on the
-Paho client library to interact with MQTT.
+with Ubuntu Linux 16.04.5 LTS x64, an Arduino Duemilanove plugged on the
+computer running the gateway, and a Mosquitto MQTT broker running on a third
+party machine. It relies on the RXTX library v2.1-7 to listen to the serial
+port, and on the Paho client library v1.1.0 to interact with MQTT.
 
-This piece of software is listening to a serial port and forwards everything it
-reads from it to an MQTT broker. In my tests, I put a potentiometer on the
-Arduino Uno that produced integer values between 0 and 400. In case of failure
-from getting values from the serial port, this program switch to a simulator
-mode by sending random integers (on the same range) to the MQTT broker.
+This piece of software listens to a (USB emulated) serial port and forwards
+everything it reads from it to an MQTT broker. In my tests, I put a
+potentiometer on the Arduino that produced integer values between 0 and 700. In
+case of failure from getting values from the serial port, this program switch to
+a simulator mode by sending random integers (on the same range) to the MQTT
+broker.
 
 Usage: It takes 2 command arguments at execution. The first one is the IP of the
 MQTT broker, the second one is the MQTT channel to write to. There are default
 values if the command arguments are missing.
+
+Tips :
+- Use "dmesg" on Linux to get the serial port ID.
+- If the port identifiers are empty, that's certainly due to a privilege issue.
+Just launch the gateway as root to solve the problem.
 
 DONATION:
 As I share these sources for commercial use too, maybe you could consider

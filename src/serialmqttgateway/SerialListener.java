@@ -64,11 +64,11 @@ public class SerialListener implements SerialPortEventListener {
 
     private static final String PORT_NAMES[] = {
         "/dev/tty.usbserial-A9007UX1", // Mac OS X
-        "/dev/ttyACM0", // Linux (Debian-based) - Raspberry Pi
-        "/dev/ttyUSB0", // Linux (not Debian-based)
+        "/dev/ttyACM0", // Linux (Raspberry Pi)
+        "/dev/ttyUSB0", // Linux (Ubuntu)
         "COM3", // Windows
     };
-    private static final String SELECTED_PORT_NAME = "/dev/ttyACM0";
+    private static final String SELECTED_PORT_NAME = PORT_NAMES[2];
     private static final int OPENING_TIME_OUT = 2000;
     private static final int DATA_RATE = 9600;
 
@@ -126,8 +126,8 @@ public class SerialListener implements SerialPortEventListener {
             serialPort.addEventListener(this);
 
             serialPort.notifyOnDataAvailable(true);
-        } catch (PortInUseException | UnsupportedCommOperationException |
-                IOException | TooManyListenersException ex) {
+        } catch (PortInUseException | UnsupportedCommOperationException
+                | IOException | TooManyListenersException ex) {
             throw new serialmqttgateway.exceptions.SerialListenerInitException(
                     ex);
         }

@@ -54,10 +54,10 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 public class MQTTConnector {
 
-    private final String id = "fabmqttpubarduino";
-    private final String port = "1883";
-    private String ip = "192.168.1.41";
-    private String channel = "fab/potentiometer";
+    private final String id = "Arduino_to_MQTT"; // MQTT broker "name"
+    private final String port = "1883"; // MQTT broker port
+    private String ip = "192.168.1.3"; // MQTT broker IP
+    private String channel = "arduino/pulsar"; // MQTT broker channel
 
     private MqttClient client;
 
@@ -70,7 +70,7 @@ public class MQTTConnector {
         if (null == ip || null == channel || ip.isEmpty()
                 || channel.isEmpty()) {
             System.out.println(
-                    "Missing argument(s): Switching to default MQTT bus values"
+                    "Missing argument(s): Switching to default values"
             );
         } else {
             this.ip = ip;

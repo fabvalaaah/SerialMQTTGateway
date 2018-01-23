@@ -54,8 +54,8 @@ import serialmqttgateway.exceptions.SerialListenerInitException;
 public class SerialMQTTGateway {
 
     private static final int LISTENING_THREAD_KEEPALIVE = 3600000; // ms
-    private static final int TEMPO_RND = 10000; // ms
-    private static final int MAX_RND = 401; // 401 excluded
+    private static final int TEMPO_RND = 500; // ms
+    private static final int MAX_RND = 701; // 701 excluded
 
     public static void main(String[] args) {
         MQTTConnector mc = null;
@@ -94,7 +94,7 @@ public class SerialMQTTGateway {
             Random rand = new Random();
             while (System.currentTimeMillis() <= startTime
                     + LISTENING_THREAD_KEEPALIVE) {
-                // Pseudo-random integer pick up between 0 and 400
+                // Pseudo-random integer pick up between 0 and 700
                 int rndValue = rand.nextInt(MAX_RND);
                 try {
                     mc.publish("" + rndValue);
