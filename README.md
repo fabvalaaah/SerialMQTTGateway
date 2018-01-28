@@ -1,5 +1,6 @@
 # SerialMQTTGateway
-Serial to MQTT gateway in Java.
+Serial to MQTT gateway in Java + Arduino demo program + Node-RED demo flow JSON
+configuration.
 
 This is a Java NetBeans project, compiled with the Open JDK 1.8.0_151 and tested
 with Ubuntu Linux 16.04.5 LTS x64, an Arduino Duemilanove plugged on the
