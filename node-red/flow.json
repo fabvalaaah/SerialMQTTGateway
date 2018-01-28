@@ -1,0 +1,127 @@
+[
+    {
+        "id": "941c77d1.c86ce",
+        "type": "tab",
+        "label": "Flow 1"
+    },
+    {
+        "id": "d77807c7.2e3b48",
+        "type": "mqtt in",
+        "z": "941c77d1.c86ce",
+        "name": "Tree size",
+        "topic": "arduino/pulsar",
+        "qos": "2",
+        "broker": "92a8afa8.917d4",
+        "x": 238,
+        "y": 113.99999237060547,
+        "wires": [
+            [
+                "1ce825fb.02c88a"
+            ]
+        ]
+    },
+    {
+        "id": "730dde90.670c8",
+        "type": "inject",
+        "z": "941c77d1.c86ce",
+        "name": "Trees injector",
+        "topic": "arbres",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "x": 280,
+        "y": 340,
+        "wires": [
+            [
+                "4a3b3919.a74628"
+            ]
+        ]
+    },
+    {
+        "id": "4a3b3919.a74628",
+        "type": "http request",
+        "z": "941c77d1.c86ce",
+        "name": "Paris remarkable trees",
+        "method": "GET",
+        "ret": "obj",
+        "url": "https://opendata.paris.fr/explore/dataset/arbresremarquablesparis2011/download/?format=json&timezone=Europe/Berlin",
+        "tls": "",
+        "x": 530,
+        "y": 340,
+        "wires": [
+            [
+                "c9550ec8.f1cad"
+            ]
+        ]
+    },
+    {
+        "id": "c9550ec8.f1cad",
+        "type": "function",
+        "z": "941c77d1.c86ce",
+        "name": "Filtered trees",
+        "func": "if ('arduino/pulsar' === msg.topic && flow.get('trees')) {\n    var selection = [];\n    flow.get('trees').forEach((tree) => {\n        if (tree.fields.circonferenceencm > msg.payload) {\n            selection.push({ 'name': tree.fields.objectid + '', 'lat': tree.fields.geom_x_y[0], 'lon': tree.fields.geom_x_y[1], 'Espèce': tree.fields.libellefrancais, 'Circonférence': tree.fields.circonferenceencm, 'Lieu': tree.fields.adresse, 'Arrondissement': tree.fields.arrondissement, 'iconColor': 'green', 'layer': 'tree_layer'});\n        }\n    });\n    \n    var newMsg = [];\n    newMsg.push({ 'payload': { 'command': { 'clear': 'tree_layer' } } });\n    newMsg.push({ 'payload': selection });\n    \n    return [ newMsg ];\n} else if ('trees' === msg.topic) {\n    flow.set('trees', msg.payload);\n}",
+        "outputs": "1",
+        "noerr": 0,
+        "x": 838.8666381835938,
+        "y": 157.2333221435547,
+        "wires": [
+            [
+                "4506a8ec.f3fb"
+            ]
+        ]
+    },
+    {
+        "id": "4506a8ec.f3fb",
+        "type": "worldmap",
+        "z": "941c77d1.c86ce",
+        "name": "Trees map",
+        "lat": "48.8534",
+        "lon": "2.3488",
+        "zoom": "13",
+        "layer": "OSM",
+        "cluster": "12",
+        "maxage": "",
+        "usermenu": "show",
+        "layers": "show",
+        "panit": "false",
+        "x": 1110,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "1ce825fb.02c88a",
+        "type": "function",
+        "z": "941c77d1.c86ce",
+        "name": "Change detector",
+        "func": "if (!flow.get('previous_size') || flow.get('previous_size') !== msg.payload) {\n    flow.set('previous_size', msg.payload);\n    \n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 494,
+        "y": 127.5,
+        "wires": [
+            [
+                "c9550ec8.f1cad"
+            ]
+        ]
+    },
+    {
+        "id": "92a8afa8.917d4",
+        "type": "mqtt-broker",
+        "z": "",
+        "broker": "192.168.224.133",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": ""
+    }
+]

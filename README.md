@@ -9,10 +9,18 @@ port, and on the Paho client library v1.1.0 to interact with MQTT.
 
 This piece of software listens to a (USB emulated) serial port and forwards
 everything it reads from it to an MQTT broker. In my tests, I put a
-potentiometer on the Arduino that produced integer values between 0 and 700. In
-case of failure from getting values from the serial port, this program switch to
-a simulator mode by sending random integers (on the same range) to the MQTT
-broker.
+potentiometer on the Arduino that produced integer values between 0 and 700
+regarding its position every 500ms. In case of failure from getting values from
+the serial port, this gateway switch to a simulator mode by sending random
+integers (in the same range) to the MQTT broker.
+For a full demo, I provided the Arduino program and a Node-RED JSON
+configuration file that can be imported through its administration interface.
+This Node-RED flow subscribes to the MQTT broker, gets the potentiometer value
+and filters an open-data source to render the result on an live map ("worldmap"
+node must be previously installed through the "palette manager"). The data
+source used for this example is the full set of remarkable trees from Paris
+(France). The map will only render the ones which circumferences are greater or
+equal than the value set by the potentiometer.
 
 Usage: It takes 2 command arguments at execution. The first one is the IP of the
 MQTT broker, the second one is the MQTT channel to write to. There are default
