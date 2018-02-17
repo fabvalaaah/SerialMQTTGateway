@@ -23,9 +23,9 @@ source used for this example is the full set of remarkable trees from Paris
 (France). The map will only render the ones which circumferences are greater or
 equal than the value set by the potentiometer.
 
-Usage: It takes 2 command arguments at execution. The first one is the IP of the
-MQTT broker, the second one is the MQTT channel to write to. There are default
-values if the command arguments are missing.
+Usage: It takes 2 command arguments at execution. The first one is the IP:PORT
+of the MQTT broker, the second one is the MQTT channel to write to. There are
+default values if the command arguments are missing.
 
 Tips:
 - Use "dmesg" on Linux to get the serial port ID.
