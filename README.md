@@ -29,7 +29,7 @@ values if the command arguments are missing.
 
 Tips:
 - Use "dmesg" on Linux to get the serial port ID.
-- If the port identifiers are empty, that's certainly due to a privilege issue.
+- If the port identifiers are empty, that's may be due to a privilege issue.
 Just launch the gateway as root to solve the problem.
 
 DONATION:
