@@ -2,7 +2,7 @@
     {
         "id": "941c77d1.c86ce",
         "type": "tab",
-        "label": "Flow 1"
+        "label": "SerialMQTTGateway"
     },
     {
         "id": "d77807c7.2e3b48",
@@ -25,7 +25,7 @@
         "type": "inject",
         "z": "941c77d1.c86ce",
         "name": "Trees injector",
-        "topic": "arbres",
+        "topic": "trees",
         "payload": "",
         "payloadType": "date",
         "repeat": "",
@@ -110,7 +110,7 @@
         "id": "92a8afa8.917d4",
         "type": "mqtt-broker",
         "z": "",
-        "broker": "192.168.224.133",
+        "broker": "127.0.0.1",
         "port": "1883",
         "clientid": "",
         "usetls": false,

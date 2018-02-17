@@ -56,7 +56,7 @@ public class MQTTConnector {
 
     private final String id = "Arduino_to_MQTT"; // MQTT broker "name"
     private final String port = "1883"; // MQTT broker port
-    private String ip = "192.168.1.3"; // MQTT broker IP
+    private String ip = "127.0.0.1"; // MQTT broker IP
     private String channel = "arduino/pulsar"; // MQTT broker channel
 
     private MqttClient client;
